@@ -30,7 +30,7 @@ public class FuncionarioAssalariado extends Funcionario {
 
     @Override
     public String toString() {
-        return String.format("Funcionario Assalariado: %s\nSalário Semanal: %.2f reais\n", super.toString(), getSalarioSemanal());
+        return String.format("Funcionario Assalariado: %s\nSalário Semanal: %.2f reais", super.toString(), getSalarioSemanal());
     }
 
    @Override

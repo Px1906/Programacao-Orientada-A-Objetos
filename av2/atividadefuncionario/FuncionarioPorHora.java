@@ -40,7 +40,7 @@ public class FuncionarioPorHora extends Funcionario {
  
     @Override
     public String toString() {
-        return String.format("Funcionario por Hora: %s\nGanho por hora: %.2f reais\nHoras Trabalhadas: %s\n", super.toString(), getGanhoPorHora(), getHorasTrabalhadas());
+        return String.format("Funcionario por Hora: %s\nGanho por hora: %.2f reais\nHoras Trabalhadas: %s", super.toString(), getGanhoPorHora(), getHorasTrabalhadas());
     }
 
     @Override
