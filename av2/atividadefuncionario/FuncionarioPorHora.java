@@ -21,11 +21,11 @@ public class FuncionarioPorHora extends Funcionario {
         this.ganhoPorHora = ganhoPorHora;
         this.horasTrabalhadas = horasTrabalhadas;
     }
- 
+    
     public void setGanhoPorHora(float ganhoPorHora) {
         this.ganhoPorHora = ganhoPorHora;
     }
- 
+
     public void setHorasTrabalhadas(int horasTrabalhadas) {
         this.horasTrabalhadas = horasTrabalhadas;
     }
@@ -40,7 +40,7 @@ public class FuncionarioPorHora extends Funcionario {
  
     @Override
     public String toString() {
-        return String.format("Nome: %s %s\nPIN: %s\nGanho por hora: %.2f reais\nHoras Trabalhadas: %s", getNome(), getSobrenome(), getPin(), getGanhoPorHora(), getHorasTrabalhadas());
+        return String.format("Funcionario por Hora: %s\nGanho por hora: %.2f reais\nHoras Trabalhadas: %s\n", super.toString(), getGanhoPorHora(), getHorasTrabalhadas());
     }
 
     @Override

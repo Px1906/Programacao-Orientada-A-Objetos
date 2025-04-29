@@ -1,6 +1,6 @@
 package av2.atividadefuncionario;
 
-public class FuncionarioAssalariadoComComissao extends FuncionarioComicionado {
+public class FuncionarioAssalariadoComComissao extends FuncionarioComissionado {
 
     private double salarioBase;
  
@@ -28,7 +28,7 @@ public class FuncionarioAssalariadoComComissao extends FuncionarioComicionado {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s %s\nPIN: %s\nGanhos: %.2f",getNome(), getSobrenome(), getPin());
+        return String.format("(Com salário) %s\nSalario Base: %s", super.toString(), getSalarioBase());
     }
 
     @Override

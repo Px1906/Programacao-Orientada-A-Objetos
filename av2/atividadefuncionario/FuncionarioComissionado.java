@@ -1,14 +1,14 @@
 package av2.atividadefuncionario;
 
-public class FuncionarioComicionado extends Funcionario {
+public class FuncionarioComissionado extends Funcionario {
 
     private double taxaDeComissao;
     private double valorDasVendas;
  
-    public FuncionarioComicionado(String nome, String sobrenome, String PIN, double taxaDeComissao, double valorDasVendas) {
+    public FuncionarioComissionado(String nome, String sobrenome, String PIN, double taxaDeComissao, double valorDasVendas) {
         super(nome, sobrenome, PIN);
 
-        if(taxaDeComissao < 0 || taxaDeComissao > 1) {
+        if(taxaDeComissao < 0.0 || taxaDeComissao > 1.0) {
             throw new IllegalArgumentException("insira uma taxa válida pufavo");
         } else if(valorDasVendas < 0) {
             throw new IllegalArgumentException("Insira o valor valido na moral");
@@ -36,7 +36,7 @@ public class FuncionarioComicionado extends Funcionario {
  
     @Override
     public String toString() {
-        return String.format("Nome: %s %s\nPIN: %s\nGanhos: %.2f", getNome(), getSobrenome(), getPin(), ganhos());
+        return String.format("Funcionário Comissionado: %s\nTaxa da Comissão: %.0f%%\nValor das Vendas: %.2f", super.toString(), getTaxaDeComissao() * 100, getValorDasVendas());
     }
 
     @Override

@@ -26,7 +26,7 @@ public abstract class Funcionario {
   
     @Override
     public String toString() {
-        return String.format("Nome: %s %s\nPIN: %s", nome, sobrenome, pin);
+        return String.format("%s %s\nPIN: %s", nome, sobrenome, pin);
     }
  
     public abstract double ganhos();
