@@ -1,9 +1,12 @@
+package com.example;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Empregado {
 
@@ -11,8 +14,8 @@ public class Empregado {
     private String cargo;
     private String id;
     private double salario;
-    private int dependentes;
-    private String filePath;
+    private double bonus;
+    private ArrayList<Dependente> dependentes;
 
     public Empregado(String nome, String cargo, String id, double salario) {
         try {
@@ -26,8 +29,7 @@ public class Empregado {
         this.cargo = cargo;
         this.id = id;
         this.salario = salario;
-        this.dependentes = 0;
-        this.filePath = "D:\\Unifor\\GitHub\\Programacao-Orientada-A-Objetos\\av3\\trabalhoAv3\\src\\" + this.getId() + ".txt";
+        this.dependentes = new ArrayList<>();
     }
 
     public String getNome() {
@@ -36,11 +38,6 @@ public class Empregado {
 
     public void setNome(String nome) {
         this.nome = nome;
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
     }
 
     public String getCargo() {
@@ -49,11 +46,6 @@ public class Empregado {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
     }
 
     public String getId() {
@@ -62,11 +54,6 @@ public class Empregado {
 
     public void setId(String id) {
         this.id = id;
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
     }
 
     public double getSalario() {
@@ -83,66 +70,49 @@ public class Empregado {
             }
         
         this.salario = salario;
-
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
     }
 
-    public int getDependentes() {
-        return this.dependentes;
+    public ArrayList<Dependente> getDependentes() {
+        return dependentes;
     }
 
-    public void setDependentes(int dependentes) {
+    public void setDependentes(ArrayList<Dependente> dependentes) {
         this.dependentes = dependentes;
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
     }
 
-    public String getFilePath() {
-        return this.filePath;
+    public double getBonus() {
+        return bonus;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
     }
-    
     @Override
     public String toString() {
         return "Empregado{" + "nome='" + nome + '\'' + ", cargo='" + cargo + '\'' + ", id='" + id + '\'' + ", salario=" + salario + '}';
     }
 
-    public void criarArquivo() {
-        try (FileWriter teste = new FileWriter(this.filePath)) {
-            teste.write(this.toString());
-        } catch (IOException e) {
-            System.out.println("deu errado isso ai");
-        }
+    public void adicionarDependente(String dependente) {
+        dependentes.add(new Dependente(dependente));
     }
 
-    public void deletarArquivo() {
-        File arquivo = new File(this.filePath);
-        arquivo.delete(); 
-}
-
-    public String Arquivo() {
-        String saida = "";
-        
-        try(BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
-            String line;
-            while((line = reader.readLine()) != null){
-                saida += line;
-            }
-        } catch(FileNotFoundException e) {
-            System.out.println("Nao achou o arquivo");
-        } catch(IOException e) {
-            System.out.println("deu errado isso ai");
+    public void aplicarBonus() {
+        try {
+            if(this.dependentes.size() == 0) {
+                throw new IllegalArgumentException("Esse funcionário não tem dependentes");
+            } 
+        } catch(IllegalArgumentException e) {
+            System.out.println(e);
         }
-        return saida;
+
+        this.bonus = getSalario() * (0.02 * dependentes.size());
+    }
+
+    public void arquivarEmpregado(String filePath) {
+        try (FileWriter escrever = new FileWriter(filePath, true)) {
+            escrever.write(this.toString() + System.lineSeparator());
+        } catch (IOException e) {
+            System.err.println("Erro ao arquivar empregado: " + e.getMessage());
+        }
     }
 }
