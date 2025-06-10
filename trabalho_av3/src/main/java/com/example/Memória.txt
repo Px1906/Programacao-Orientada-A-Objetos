@@ -1,2 +1,0 @@
-Empregado{nome='João Silva', cargo='Analista', id='12345', salario=3500.0}
-Empregado{nome='Joao Silva', cargo='Analista', id='12345', salario=3500.0}
